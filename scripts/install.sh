@@ -34,8 +34,11 @@ source ~/.local/bin/virtualenvwrapper.sh
 mkvirtualenv cv -p python3
 workon cv
 
-# install the needed python packages within the cv virtual env
-pip install numpy
+# upgrade pip, possibly
+python -m pip install --upgrade pip
+
+# install useful python packages within the cv virtual env
+pip install numpy scipy scikit-learn scikit-image matplotlib ipython jupyter pandas sympy nose
 
 # clone opencv repo's if not done
 if [ ! -d "opencv" ]; then 
@@ -68,5 +71,17 @@ make && sudo make install
 # link the opencv lib into the virtualenv as cv2
 cd ~/.virtualenvs/cv/lib/python3.5/site-packages
 ln -s /usr/local/lib/python3.5/site-packages/cv2.cpython-35m-x86_64-linux-gnu.so cv2.so
+
+# create jupyter configuration file
+mkdir -p .jupyter
+cd .jupyter
+cat > jupyter_notebook_config.py << EOF
+# Configuration file for jupyter-notebook.
+c.NotebookApp.allow_origin = '*'
+c.NotebookApp.enable_mathjax = True
+c.NotebookApp.ip = '0.0.0.0'
+c.NotebookApp.open_browser = False
+c.NotebookApp.password = u'sha1:3fa9b12ce4f9:4a2561e19114afae58e5b836b212b6cdc4387472'
+EOF
 
 echo "All set!"
