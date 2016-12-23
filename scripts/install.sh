@@ -4,7 +4,6 @@ export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 sudo locale-gen en_US.UTF-8
-sudo DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true dpkg-reconfigure locales
 
 echo "Installing packages..."
 
@@ -13,7 +12,7 @@ sudo apt-get -q update
 
 # install all required packages
 sudo apt-get install -qy build-essential cmake git pkg-config libjpeg8-dev libtiff5-dev libjasper-dev libpng12-dev \
-libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libgtk2.0-dev python-dev python-tk python-numpy \
+libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libgtk2.0-dev python-dev  \
 python3-dev python3-tk libopenblas-dev liblapack-dev python3-pip
   
 # install and configure virtualenv
@@ -73,8 +72,8 @@ cd ~/.virtualenvs/cv/lib/python3.5/site-packages
 ln -s /usr/local/lib/python3.5/site-packages/cv2.cpython-35m-x86_64-linux-gnu.so cv2.so
 
 # create jupyter configuration file
-mkdir -p .jupyter
-cd .jupyter
+mkdir -p ~/.jupyter
+cd ~/.jupyter
 cat > jupyter_notebook_config.py << EOF
 # Configuration file for jupyter-notebook.
 c.NotebookApp.allow_origin = '*'
