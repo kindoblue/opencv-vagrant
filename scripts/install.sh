@@ -42,8 +42,8 @@ pip install numpy scipy scikit-learn scikit-image matplotlib ipython jupyter pan
 
 # clone opencv repo's if not done
 if [ ! -d "opencv" ]; then 
-    git clone https://github.com/opencv/opencv.git
-    git clone https://github.com/opencv/opencv_contrib.git
+    git clone --depth 1 https://github.com/opencv/opencv.git
+    git clone --depth 1 https://github.com/opencv/opencv_contrib.git
 else
    cd ~/opencv
    git pull
